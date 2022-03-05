@@ -1,0 +1,49 @@
+query SimpleRepoInfo($owner: String!, $name: String!) {
+  repository(owner: $owner, name: $name) {
+    name
+    description
+    url
+    homepageUrl
+    createdAt
+    updatedAt
+    pushedAt
+    stargazers {
+      totalCount
+    }
+    watchers {
+      totalCount
+    }
+    releases {
+      totalCount
+    }
+    issues(states: OPEN) {
+      totalCount
+    }
+    pullRequests(states: OPEN) {
+      totalCount
+    }
+    languages(first: 10) {
+      totalCount
+      nodes {
+        name
+        color
+      }
+    }
+    licenseInfo {
+      name
+      url
+    }
+    defaultBranchRef {
+      target {
+        ... on Commit {
+          history(first: 1) {
+            totalCount
+            nodes {
+              committedDate
+            }
+          }
+        }
+      }
+    }
+  }
+}

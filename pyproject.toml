@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "stellaium#1"
+version = "0.1.0"
+description = ""
+authors = ["GreyElaina <GreyElaina@outlook.com>"]
+packages = [
+    { include = "stellaium" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+graia-ariadne = {extras = ["full"], version = "^0.6.2"}
+gql = {extras = ["all"], version = "^3.0.0"}
+stringcase = "^1.2.0"
+pyhocon = "^0.3.59"
+
+[tool.poetry.dev-dependencies]
+black = {version = "^22.1.0", allow-prereleases = true}
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
