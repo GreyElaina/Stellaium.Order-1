@@ -28,7 +28,7 @@ async def simple_repo_info(app: Ariadne, event: MessageEvent, repo: str):
     owner = repo.split("/")[0]
     name = repo.split("/")[1]
     await app.sendMessage(event, MessageChain.create(Plain(f"正在查询 {repo} 的信息...")))
-    with pkg_resources.path(resources, f"simple_repo_info.gql") as file:
+    with pkg_resources.path(resources, "simple_repo_info.gql") as file:
         query = gql(file.read_text())
     try:
         result = await github_gql.execute_async(
@@ -52,7 +52,7 @@ async def simple_repo_info(app: Ariadne, event: MessageEvent, repo: str):
         elif isinstance(e, TimeoutError):
             await app.sendMessage(event, MessageChain.create(Plain("查询超时, 请重试.")))
         return
-    
+
     if not result['repository']:
         await app.sendMessage(event, MessageChain.create(Plain("发生错误: 没有找到相关仓库")))
         return
